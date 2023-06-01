@@ -7,6 +7,25 @@ const devMode = mode === 'development';
 const target = devMode ? 'web' : 'browserslist';
 const devtool = devMode ? 'source-map' : undefined;
 
+// Названия файла HTML страницы и подключаемого к нему основоного js файла должны совпадать
+const pages = [
+  { path: 'src/pages/main', fileName: "index" },
+  { path: 'src/pages/second', fileName: 'second' }
+]
+
+const entry = pages.reduce((acc, item) => {
+  acc[item.fileName] = path.resolve(__dirname, `${item.path}`, `${item.fileName}`)
+  return acc
+}, {})
+
+const htmlPlugins = pages.map(item => {
+  return new HtmlWebpackPlugin({
+    filename: `${item.fileName}.html`,
+    chunks: [`${item.fileName}`],
+    template: path.resolve(__dirname, `${item.path}`, `${item.fileName}.html`),
+  })
+})
+
 module.exports = {
   mode,
   target,
@@ -16,10 +35,7 @@ module.exports = {
     open: true,
     hot: true,
   },
-  entry: {
-    main: path.resolve(__dirname, 'src/pages/main', 'index.ts'),
-    second: path.resolve(__dirname, 'src/pages/second', 'second.ts'),
-  },
+  entry: entry,
   output: {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
@@ -27,16 +43,7 @@ module.exports = {
     assetModuleFilename: 'assets/[name][ext]',
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      chunks: ['main'],
-      template: path.resolve(__dirname, 'src/pages/main', 'main.html'),
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'second.html',
-      chunks: ['second'],
-      template: path.resolve(__dirname, 'src/pages/second', 'second.html'),
-    }),
+    ...htmlPlugins,
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
     }),
