@@ -1,0 +1,37 @@
+.right-wrapper {
+  position: relative;
+  width: 79.398496%;
+  /* 528/665 */
+  min-height: 100%;
+  padding: 39px 22px 33px 21px;
+  background-color: #fff;
+  overflow: hidden;
+
+
+  &__image {
+    position: absolute;
+    bottom: -65px;
+    right: -100px;
+    z-index: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .right-wrapper {
+    padding: 30px 15px;
+
+    &__image {
+      width: 400px;
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .right-wrapper {
+    padding: 20px 10px;
+
+    &__image {
+      width: 300px
+    }
+  }
+}

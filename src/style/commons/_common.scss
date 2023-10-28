@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+  padding: 60px;
+  background-color: #F4F5FC;
+  font-family: WorkSans;
+}
+
+.overFill {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 12px;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 575px) {
+  body {
+    padding: 20px;
+  }
+}
