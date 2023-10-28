@@ -9,8 +9,7 @@ const devtool = devMode ? 'source-map' : undefined;
 
 // Названия файла HTML страницы и подключаемого к нему основоного js файла должны совпадать
 const pages = [
-  { path: 'src/pages/main', fileName: "index" },
-  { path: 'src/pages/second', fileName: 'second' }
+  { path: 'src', fileName: "index" },
 ]
 
 const entry = pages.reduce((acc, item) => {
