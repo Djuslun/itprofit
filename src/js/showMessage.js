@@ -1,12 +1,27 @@
-const messageWindow = document.querySelector('.pop-up');
-const messageWindowClose = document.querySelector('.pop-up__close');
+const messageWindow = document.querySelectorAll('.pop-up');
+const messageWindowClose = document.querySelectorAll('.pop-up__close');
+const showModalButton = document.querySelector('.form__button[type=button]');
 
-export function showMessageWindow() {
-  messageWindow.classList.add('active');
+export function showMessageWindow(status) {
+  if (status) {
+    messageWindow[0].classList.add('active');
+  } else {
+    messageWindow[1].classList.add('active');
+  }
 }
 
-function hideMessageWindow() {
-  messageWindow.classList.remove('active');
+function hideMessageWindow(index) {
+  messageWindow[index].classList.remove('active');
 }
 
-messageWindowClose.addEventListener('click', hideMessageWindow)
+showModalButton.addEventListener('click', () => {
+  messageWindow[2].classList.add('active');
+  document.body.classList.add('block')
+})
+
+messageWindowClose.forEach((item, index) => {
+  item.addEventListener('click', () => {
+    document.body.classList.remove('block')
+    hideMessageWindow(index)
+  })
+})

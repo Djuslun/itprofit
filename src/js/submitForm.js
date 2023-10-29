@@ -19,24 +19,28 @@ function postData(form) {
 
     try {
       if (!isformValid) {
-        throw new Error('validate error')
+        throw new Error("Validate error")
       }
-      let response = await fetch('http://localhost:9090/api/message', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8'
-        },
-        body: JSON.stringify(object)
-      });
-      let result = await response.json();
-      console.log(result)
-      if (response.ok) {
-        showMessageWindow()
-        form.reset();
-        removeValidClass();
-        console.log(result)
-      } else {
-        throw new Error('submit error')
+      try {
+        let response = await fetch('http://localhost:9090/api/message', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          },
+          body: JSON.stringify(object)
+        });
+        let result = await response.json();
+        if (response.ok) {
+          showMessageWindow(result.ok)
+          form.reset();
+          removeValidClass();
+          console.log(result)
+        } else {
+          throw new Error('Submit error')
+        }
+      } catch (error) {
+        console.log(error.message)
+        showMessageWindow(false)
       }
     } catch (error) {
       submitButtonError();

@@ -46,7 +46,7 @@ app.post("/api/message", (req, res) => {
       msg: "Ваша заявка успешно отправлена",
     });
   } else {
-    res.statusCode = 500;
+    res.statusCode = 400;
     res.json({
       status: "error",
       msg: "Cообщение об ошибке",
