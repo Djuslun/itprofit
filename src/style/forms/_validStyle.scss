@@ -1,3 +1,5 @@
+@import '../commons/var';
+
 ._valid+span::before {
   content: '';
   display: block;
@@ -11,6 +13,15 @@
 }
 
 ._unvalid {
-  color: #FF2222;
-  border-bottom: 1px solid #FF2222;
+  position: relative;
+  color: $light_red;
+  border-bottom: 1px solid $light_red;
+
+  &+span::after {
+    content: "Incorrectly filled field";
+    color: $light_red;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }

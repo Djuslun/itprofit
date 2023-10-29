@@ -1,6 +1,6 @@
 import { inputs, removeValidClass, submitValidate } from './validateInput';
 import { submitButtonError } from './animateForm';
-
+import { showMessageWindow } from './showMessage'
 const form = document.querySelector('form');
 
 function postData(form) {
@@ -31,6 +31,7 @@ function postData(form) {
       let result = await response.json();
       console.log(result)
       if (response.ok) {
+        showMessageWindow()
         form.reset();
         removeValidClass();
         console.log(result)
