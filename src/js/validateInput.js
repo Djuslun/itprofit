@@ -1,10 +1,17 @@
+import IMask from 'imask';
+
 const emailInput = document.querySelector('#email');
 const nameInput = document.querySelector('#name');
 const telephoneInput = document.querySelector('#telephone');
 const messageInput = document.querySelector('#message');
 const emailPattern = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i
 const namePattern = /^[а-яА-ЯёЁa-zA-Z]+$/ // Имя не должно содержать цифр и пробелов
-const telephonePattern = /^((8|\+)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,14}$/i; // Отсеить все нецифровые значения номера, исключения сделать только для всяких скобо, дефисов, пробелов и т.д.
+const telephonePattern = /^((\+375)[\- ]?)?(\(?\d{2,3}\)?[\- ]?)?[\d\- ]{7,14}$/i; // Отсеить все нецифровые значения номера, исключения сделать только для всяких скобо, дефисов, пробелов и т.д.
+
+const phoneMask = new IMask(telephoneInput, {
+  mask: "{+375} (00) 000-00-00",
+  lazy: false
+});
 
 export const inputs = [
   { input: emailInput, pattern: emailPattern, isValide: false },
