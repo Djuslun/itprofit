@@ -27,3 +27,9 @@ npm run build-prod
 ```shell
 npm run clear
 ```
+
+### Для запуска сервера на порту 9090
+
+```shell
+npm run server
+```
